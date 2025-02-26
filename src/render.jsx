@@ -6,6 +6,10 @@ import './index.css'
 // Only handle rendering here
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App  onCheckCallbackClick={() => {console.log('Hello')}}/>
+    <App  
+        onCheckCallbackClick={() => {console.log('Hello')}}
+        onCheckCallbackWithDataReturn={() => {
+            return 'Some data'
+        }} />
   </React.StrictMode>
 ) 
