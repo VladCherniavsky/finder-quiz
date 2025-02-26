@@ -6,6 +6,6 @@ import './index.css'
 // Only handle rendering here
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <App />
+    <App  onCheckCallbackClick={() => {console.log('Hello')}}/>
   </React.StrictMode>
 ) 
