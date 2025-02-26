@@ -12,38 +12,28 @@ export default defineConfig({
   build: {
     rollupOptions: {
       input: {
+        bundle: 'src/main.jsx',
         app: 'src/render.jsx',
         index: 'index.html'
       },
       output: {
-        format: 'es',
         entryFileNames: '[name].js',
+        globals: {
+          react: 'React',
+          'react-dom': 'ReactDOM'
+        },
         preserveModules: false,
-        manualChunks: (id) => {
-          if (id.includes('src/render.jsx')) {
-            return 'app';
+        inlineDynamicImports: false,
+        manualChunks: null,
+        chunkFileNames: (chunkInfo) => {
+          if (chunkInfo.facadeModuleId?.includes('main.jsx')) {
+            return 'bundle.js';
           }
+          return 'assets/[name].js';
         }
       }
     },
     outDir: 'dist',
-    emptyOutDir: true,
-    target: 'esnext'
-  },
-  // Separate config for bundle
-  bundle: {
-    rollupOptions: {
-      input: 'src/main.jsx',
-      output: {
-        format: 'iife',
-        name: 'bundle',
-        file: 'dist/bundle.js',
-        inlineDynamicImports: true,
-        globals: {
-          react: 'React',
-          'react-dom': 'ReactDOM'
-        }
-      }
-    }
+    emptyOutDir: true
   }
 });

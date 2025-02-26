@@ -1,5 +1,6 @@
 import Header from './components/Header'
 import ShoeFinder from './components/ShoeFinder'
+import './index.css';
 
 function App({label, questions}) {
 
