@@ -5,7 +5,7 @@ import QuizButton from './components/QuizButton'
 import root from 'react-shadow';
 import styles from './index.css?inline'
 
-function App({label, questions,  onCheckCallbackClick, onCheckCallbackWithDataReturn}) {
+function App({dataFromSF,  onCheckCallbackClick, onCheckCallbackWithDataReturn, onFinishQuiz}) {
 
   const [data, setData] = useState(undefined);
 
@@ -17,10 +17,8 @@ function App({label, questions,  onCheckCallbackClick, onCheckCallbackWithDataRe
 
   return (
     <root.div className="min-h-screen bg-white">
-      <p>props label: {label}</p>
-      <p>props questions: {questions}</p>
-      <Header />
-      <ShoeFinder />
+      <p>data from  SF: {dataFromSF}</p>
+      <ShoeFinder onFinishQuiz={onFinishQuiz}/>
       <div className='flex'>
       <QuizButton 
         label={'Check callback'} 

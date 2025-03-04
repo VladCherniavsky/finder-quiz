@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import QuizButton from './QuizButton'
 
-export default function ShoeFinder() {
+export default function ShoeFinder({onFinishQuiz}) {
   const [currentStep, setCurrentStep] = useState(0)
   const [answers, setAnswers] = useState({})
 
@@ -40,6 +40,11 @@ export default function ShoeFinder() {
       [questionId]: optionId
     }))
     setCurrentStep(prev => prev + 1)
+  }
+
+  const handleSubmit = () => {
+     setCurrentStep(0);
+     onFinishQuiz(['123', '345']);
   }
 
   return (
@@ -84,7 +89,7 @@ export default function ShoeFinder() {
           <h2 className="text-2xl font-bold">Thank you for completing the quiz!</h2>
           <QuizButton 
             label="Start Over"
-            onClick={() => setCurrentStep(0)}
+            onClick={handleSubmit}
             className="mt-4 bg-brooks-blue text-white max-w-xs mx-auto"
           />
         </div>
